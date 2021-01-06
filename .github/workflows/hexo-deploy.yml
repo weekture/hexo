@@ -21,6 +21,9 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - name: Install hexo-cli
+        run: npm i -g hexo
+
       - name: Configuration
         run: |
           git config --global user.name 'weekture'

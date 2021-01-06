@@ -2,7 +2,7 @@
 
 ## install hexo client tool
 
-``` npm install hexo-cli -g ```
+``` npm install hexo -g ```
 
 ## generate new post
 
