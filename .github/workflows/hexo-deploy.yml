@@ -1,0 +1,44 @@
+name: Node CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node: [12.x]
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Setup nodejs ${{ matrix.node-version }}
+        uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Configuration
+        run: |
+          git config --global user.name 'weekture'
+          git config --global user.email 'focal.five@gmail.com'
+          sed -i "s/__GITHUB_TOKEN__/${{ secret.HEXO_DEPLOY_TOKEN }}/" _config.yml
+          
+      - name: Install theme
+        run: |
+          git submodule update --init --remote --recusive
+          
+      - name: Install node modules
+        run: npm install
+        
+      - name: Clean hexo
+        run: hexo clean
+
+      - name: Generate hexo
+        run: hexo generate
+        
+      - name: Deploy hexo
+        run: hexo deploy
