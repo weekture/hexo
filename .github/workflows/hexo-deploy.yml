@@ -11,15 +11,15 @@ jobs:
     
     strategy:
       matrix:
-        node: [12.x]
+        node: [12]
 
     steps:
       - uses: actions/checkout@master
 
-      - name: Setup nodejs ${{ matrix.node-version }}
+      - name: Setup nodejs ${{ matrix.node }}
         uses: actions/setup-node@master
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ matrix.node }}
 
       - name: Install hexo-cli
         run: sudo npm install -g hexo
