@@ -25,7 +25,7 @@ jobs:
         run: |
           git config --global user.name 'weekture'
           git config --global user.email 'focal.five@gmail.com'
-          sed -i "s/__GITHUB_TOKEN__/${{ secret.HEXO_DEPLOY_TOKEN }}/" _config.yml
+          sed -i "s/__GITHUB_TOKEN__/${{ secrets.HEXO_DEPLOY_TOKEN }}/" _config.yml
           
       - name: Install theme
         run: |
