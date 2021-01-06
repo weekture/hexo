@@ -27,10 +27,6 @@ jobs:
           git config --global user.email 'focal.five@gmail.com'
           sed -i "s/__GITHUB_TOKEN__/${{ secrets.HEXO_DEPLOY_TOKEN }}/" _config.yml
           
-      - name: Install theme
-        run: |
-          git submodule update --init --remote --recusive
-          
       - name: Install node modules
         run: npm install
         
